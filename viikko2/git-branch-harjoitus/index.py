@@ -5,12 +5,12 @@ from summa import summa
 from erotus import erotus
 
 
-logger("aloitetaan")
+logger("aloitetaan laskuohjelma")
 
 x = int(input("luku 1: "))
 y = int(input("luku 2: "))
-print(f"Lukujen {x} ja {y} summa on {summa(x, y)}")
-print(f"Lukujen {x} ja {y} summa on {erotus(x, y)}")
+print(f"{x} + {y} = {summa(x, y)}")
+print(f"{x} - {y} = {erotus(x, y)}")
 
 logger("lopetetaan")
 print("heihei!")
