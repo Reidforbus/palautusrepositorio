@@ -1,1 +1,2 @@
 vaihdettu bugikorjaus- branchiin
+lisätty muutos
