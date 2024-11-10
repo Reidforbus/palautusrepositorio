@@ -8,5 +8,12 @@ class Player:
         self.games = dict['games']
         self.id = dict['id']
 
+    @property
+    def points(self):
+        return self.goals + self.assists
+
     def __str__(self):
-        return self.name
+        return f"{self.name:20} {self.team} {self.goals:3} + {self.assists:3} = {self.points}"
+
+    def sortByPoints(player):
+        return player.points
