@@ -15,5 +15,8 @@ class Player:
     def __str__(self):
         return f"{self.name:20} {self.team} {self.goals:3} + {self.assists:3} = {self.points}"
 
+    def get_table_data(self):
+        return self.name, self.team, self.goals, self.assists, self.points
+
     def sortByPoints(player):
         return player.points
