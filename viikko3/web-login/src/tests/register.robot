@@ -53,7 +53,32 @@ Register With Valid Username That Is Already In Use
     Submit Credentials
     Page Should Contain    User with username kalle already exists
 
+Login After Succesful Registration
+    Set Username  kalle
+    Set Password  kalle123
+    Set Password Confirmation    kalle123
+    Submit Credentials
+    Click Link    Continue to main page
+    Click Button    Logout
+    Set Username    kalle
+    Set Password    kalle123
+    Click Button    Login
+    Main Page Should Be Open
+
+Login After Failed Registration
+    Set Username  kalle
+    Set Password    kalle123
+    Set Password Confirmation    kalle124
+    Submit Credentials
+    Page Should Contain    Password and password confirmation must match
+    Go To Login Page
+    Set Username    kalle
+    Set Password    kalle123
+    Click Button    Login
+    Page Should Contain    Invalid username or password
+
 *** Keywords ***
+
 Reset Application And Go To Register Page
     Reset Application
     Go To Register Page
