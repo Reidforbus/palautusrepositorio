@@ -21,3 +21,5 @@ Tämän jälkeen kaikki osallistujat saavat lisätä palautetta taululle ja komm
 Seuraavaksi taululle lisättyja palautteita ryhmitellään suuremmiksi kokonaisuuksiksi.
 
 Kun palaute on saatu kerättyä, ryhmän mielestä tärkeimmistä aiheista keskustellaan miten niitä voisi kehittää. Mahdollisista muutoksista voidaan esim. äänestää viittausäänestyksellä
+
+testimuutos
