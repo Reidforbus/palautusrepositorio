@@ -22,4 +22,4 @@ Seuraavaksi taululle lisättyja palautteita ryhmitellään suuremmiksi kokonaisu
 
 Kun palaute on saatu kerättyä, ryhmän mielestä tärkeimmistä aiheista keskustellaan miten niitä voisi kehittää. Mahdollisista muutoksista voidaan esim. äänestää viittausäänestyksellä
 
-testimuutos 2
+testimuutos v1.1.0
