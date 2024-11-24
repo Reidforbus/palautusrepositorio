@@ -44,6 +44,7 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
         self.kauppa.tilimaksu("pekka", "12345")
+        self.kauppa._viitegeneraattori.uusi.assert_called()
         self.pankki_mock.tilisiirto.assert_called()
         # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
 
@@ -52,6 +53,7 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
         self.kauppa.tilimaksu("pekka", "12345")
+        self.kauppa._viitegeneraattori.uusi.assert_called()
         self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 5)
 
     def test_ostos_kahdella_eri_tuotteella_joita_on_varastossa(self):
@@ -59,6 +61,7 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(1)
         self.kauppa.lisaa_koriin(2)
         self.kauppa.tilimaksu("pate", "12346")
+        self.kauppa._viitegeneraattori.uusi.assert_called()
         self.pankki_mock.tilisiirto.assert_called_with("pate", 42, "12346", "33333-44455", 13)
 
     def test_ostos_kahdella_eri_tuotteella_joista_toista_ei_varastossa(self):
@@ -66,4 +69,24 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(1)
         self.kauppa.lisaa_koriin(3)
         self.kauppa.tilimaksu("pate", "12346")
+        self.kauppa._viitegeneraattori.uusi.assert_called()
         self.pankki_mock.tilisiirto.assert_called_with("pate", 42, "12346", "33333-44455", 5)
+
+    def test_aloita_asiointi_tyhjentää_vanhat_ostokset(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+        self.kauppa._viitegeneraattori.uusi.assert_called()
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 5)
+
+    def test_ostoksen_poistaminen(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.poista_korista(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+        self.kauppa._viitegeneraattori.uusi.assert_called()
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 8)
